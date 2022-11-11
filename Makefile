@@ -1,7 +1,7 @@
 source .env
 export AWS_PROFILE=tw-beach
 
-install:
+set-env:
 	cp secrets/tw.env .env
 
 config:
