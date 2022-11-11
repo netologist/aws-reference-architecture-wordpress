@@ -1,5 +1,4 @@
-# AWS Reference Architecture for Wordpress [ Work in Progress ]
-
+# AWS Reference Architecture for Wordpress [ WiP ]
 
 [AWS Reference Architecture (Wordpress)](https://aws.amazon.com/blogs/architecture/wordpress-best-practices-on-aws/) with Terraform and Terragrunt Solutions
 
