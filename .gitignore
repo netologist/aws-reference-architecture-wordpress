@@ -3,9 +3,6 @@
 
 output-tf*.json
 
-.env
-tw.env
-
 # Local .terraform directories
 **/.terraform/*
 
