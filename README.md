@@ -1,2 +1,2 @@
 # aws-wordpress-architecture
-AWS Wordpress Architecture with Terraform and Terragrunt Solution
+AWS Wordpress Architecture with Terraform and Terragrunt Solutions
