@@ -3,6 +3,9 @@
 
 output-tf*.json
 
+.env
+tw.env
+
 # Local .terraform directories
 **/.terraform/*
 
@@ -37,3 +40,5 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+.gitsecret/keys/random_seed
+!*.secret
