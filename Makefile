@@ -1,6 +1,9 @@
 source .env
 export AWS_PROFILE=tw-beach
 
+install:
+	cp secrets/tw.env .env
+
 config:
 	saml2aws configure \
 		--idp-account ${IDP_ACCOUNT} \

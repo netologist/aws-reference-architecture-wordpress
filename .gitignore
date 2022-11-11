@@ -1,6 +1,8 @@
 ~/.aws/credentials
 */~/*
 
+.env
+
 output-tf*.json
 
 # Local .terraform directories
