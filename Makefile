@@ -6,6 +6,9 @@ export AWS_PROFILE=tw-beach
 set-env:
 	cp secrets/tw.env .env
 
+bootstrap-remote-state:
+	./scripts/bootstrap-remote-state.sh
+
 config: 
 	@eval `cat .env` && saml2aws configure \
 		--idp-account $${IDP_ACCOUNT} \
