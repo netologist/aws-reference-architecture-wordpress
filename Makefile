@@ -29,5 +29,8 @@ fmt:
 	terraform fmt --recursive ${ROOT_DIR}
 
 
-deploy:
+plan:
 	@echo "you should in terraform or terragrunt directories"
+
+deploy: plan
+	terraform apply "tfplan"

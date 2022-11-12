@@ -8,8 +8,8 @@ locals {
   module_path = abspath(path.module)
 }
 
-data "template_file" "phpconfig" {
-  template = file("${local.module_path}/files/conf.wp-config.php")
+data "template_file" "userdata" {
+  template = file("${local.module_path}/scripts/userdata.sh")
 
   vars = {
     db_port = aws_db_instance.mysql.port
@@ -48,62 +48,63 @@ resource "aws_instance" "ec2" {
   subnet_id                   = aws_subnet.public1.id
   associate_public_ip_address = true
 
-  user_data = file("${local.module_path}/files/userdata.sh")
+  # user_data = file("${local.module_path}/scripts/userdata.sh")
+  user_data = data.template_file.userdata.rendered
 
   tags = {
-    Name = "EC2 Instance"
+    Name = "hozgans blog"
   }
 
-  provisioner "file" {
-    source      = "files/userdata.sh"
-    destination = "/tmp/userdata.sh"
+  # provisioner "file" {
+  #   content     = data.template_file.userdata.rendered
+  #   destination = "/tmp/userdata.sh"
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = self.public_ip
-      private_key = file(var.ssh_priv_key)
-    }
-  }
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu"
+  #     host        = self.public_ip
+  #     private_key = file(var.ssh_priv_key)
+  #   }
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/userdata.sh",
-      "/tmp/userdata.sh",
-    ]
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "chmod +x /tmp/userdata.sh",
+  #     "/tmp/userdata.sh",
+  #   ]
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = self.public_ip
-      private_key = file(var.ssh_priv_key)
-    }
-  }
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu"
+  #     host        = self.public_ip
+  #     private_key = file(var.ssh_priv_key)
+  #   }
+  # }
 
-  provisioner "file" {
-    content     = data.template_file.phpconfig.rendered
-    destination = "/tmp/wp-config.php"
+  # provisioner "file" {
+  #   content     = data.template_file.userdata.rendered
+  #   destination = "/tmp/wp-config.php"
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = self.public_ip
-      private_key = file(var.ssh_priv_key)
-    }
-  }
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu"
+  #     host        = self.public_ip
+  #     private_key = file(var.ssh_priv_key)
+  #   }
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo cp /tmp/wp-config.php /var/www/html/wp-config.php",
-    ]
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo cp /tmp/wp-config.php /var/www/html/wp-config.php",
+  #   ]
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = self.public_ip
-      private_key = file(var.ssh_priv_key)
-    }
-  }
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu"
+  #     host        = self.public_ip
+  #     private_key = file(var.ssh_priv_key)
+  #   }
+  # }
 
   timeouts {
     create = "20m"

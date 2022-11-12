@@ -2,7 +2,7 @@
 */~/*
 
 .env
-
+tfplan
 output-tf*.json
 
 # Local .terraform directories

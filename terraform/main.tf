@@ -8,7 +8,7 @@ module "blog" {
   
   region         = var.region
   stack          = "hozgans-blog"
-  db_name        = "hozgans_blog_db"
+  db_name        = var.db_name
   db_username    = "hozgans_blog_user"
   db_password    = random_password.password.result
 }
