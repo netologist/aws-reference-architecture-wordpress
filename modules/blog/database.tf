@@ -111,20 +111,6 @@ resource "aws_instance" "ec2" {
   }
 }
 
-# data "aws_ami" "ubuntu" {
-#   most_recent = true
-
-#   filter {
-#     name   = "name"
-#     values = ["*ubuntu-*14.04*"]
-#   }
-
-#   filter {
-#     name   = "virtualization-type"
-#     values = ["hvm"]
-#   }
-# }
-
 data "aws_ami" "ubuntu" {
  most_recent = true
 

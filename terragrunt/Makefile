@@ -1,9 +1,4 @@
-TOPTARGETS := all clean
+include ../Makefile
 
-SUBDIRS := $(wildcard */.)
-
-$(TOPTARGETS): $(SUBDIRS)
-$(SUBDIRS):
-	$(MAKE) -C $@ $(MAKECMDGOALS)
-
-.PHONY: $(TOPTARGETS) $(SUBDIRS)
+deploy:
+	cd stacks/us-east-1/dev/blog; terragrunt init; terragrunt plan; terragrunt apply
