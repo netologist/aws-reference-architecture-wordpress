@@ -84,7 +84,7 @@ create_terraform_state_bucket_and_table() {
     aws s3api put-bucket-encryption --bucket $TF_BOOTSTRAP_BUCKET_NAME --server-side-encryption-configuration "{\"Rules\": [{\"ApplyServerSideEncryptionByDefault\":{\"SSEAlgorithm\": \"AES256\"}}]}"
 
     # dynamodb terraform lock table    
-    aws dynamodb create-table --table-name $TF_BOOTSTRAP_TABLE_NAME --attribute-definitions AttributeName=LockID,AttributeType=S --key-schema AttributeName=LockID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 > output-tf-dynamodb.json 
+    aws dynamodb create-table --region $TF_BOOTSTRAP_REGION --table-name $TF_BOOTSTRAP_TABLE_NAME --attribute-definitions AttributeName=LockID,AttributeType=S --key-schema AttributeName=LockID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 > output-tf-dynamodb.json 
 
     # iam policy
     echo $TF_BOOTSTRAP_POLICY > $TF_BOOTSTRAP_POLICY_PATH
@@ -94,7 +94,7 @@ create_terraform_state_bucket_and_table() {
 
 delete_terraform_state_bucket_and_table() {
     aws s3api delete-bucket --bucket $TF_BOOTSTRAP_BUCKET_NAME --region $TF_BOOTSTRAP_REGION > /dev/null
-    aws dynamodb delete-table --table-name $TF_BOOTSTRAP_TABLE_NAME > /dev/null
+    aws dynamodb delete-table --table-name $TF_BOOTSTRAP_TABLE_NAME --region $TF_BOOTSTRAP_REGION > /dev/null
     aws iam delete-policy --policy-arn "arn:aws:iam::$TF_BOOTSTRAP_ACCOUNT_NUMBER:policy/$TF_BOOTSTRAP_POLICY_NAME" > /dev/null
 }
 

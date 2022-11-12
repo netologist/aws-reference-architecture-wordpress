@@ -12,3 +12,7 @@ Cloudformation sloution is [there](https://github.com/aws-samples/aws-refarch-wo
 
 
 
+
+#### Inspired By Below Project(s)
+
+- https://github.com/aleti-pavan/terraform-aws-wordpress

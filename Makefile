@@ -1,13 +1,14 @@
-#IGNORE := $(shell bash -c "source .env; env | sed 's/=/:=/' | sed 's/^/export /' > /tmp/makeenv")
-#include /tmp/makeenv  
-
+ROOT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export AWS_PROFILE=tw-beach
 
+install-deps:
+	@${ROOT_DIR}/scripts/install-dependencies.sh
+
 set-env:
-	cp secrets/tw.env .env
+	@cp ${ROOT_DIR}/secrets/tw.env ${ROOT_DIR}/.env
 
 bootstrap-remote-state:
-	./scripts/bootstrap-remote-state.sh
+	@${ROOT_DIR}/scripts/bootstrap-remote-state.sh install
 
 config: 
 	@eval `cat .env` && saml2aws configure \
@@ -21,9 +22,12 @@ config:
 		--cache-saml \
 		--skip-prompt
 
-login: 
-	@eval `cat .env` && saml2aws login \
-		--idp-account=$${IDP_ACCOUNT} \
-		--region $${AWS_REGION} \
-		--username=$${OKTA_USER} \
-		--profile=$${AWS_PROFILE}
+login:
+	@${ROOT_DIR}/scripts/aws-login.sh
+
+fmt:
+	terraform fmt --recursive ${ROOT_DIR}
+
+
+deploy:
+	@echo "you should in terraform or terragrunt directories"
