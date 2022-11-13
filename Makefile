@@ -1,4 +1,5 @@
 ROOT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
 export AWS_PROFILE=tw-beach
 
 install-deps:
@@ -28,9 +29,8 @@ login:
 fmt:
 	terraform fmt --recursive ${ROOT_DIR}
 
-
 plan:
-	@echo "you should in terraform or terragrunt directories"
+	@echo "you should go to terraform or terragrunt directories for plan"
 
-deploy: plan
-	terraform apply
+deploy:
+	@echo "you should go to terraform or terragrunt directories for deployment"
