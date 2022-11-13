@@ -6,10 +6,10 @@ resource "random_password" "password" {
 
 module "blog" {
   source = "../../../../../modules/blog"
-  
-  region         = var.region
-  stack          = "hozgans-blog"
-  db_name        = var.db_name
-  db_username    = "hozgans_blog_user"
-  db_password    = random_password.password.result
+
+  region      = var.region
+  stack       = "hozgans-blog"
+  db_name     = var.db_name
+  db_username = "hozgans_blog_user"
+  db_password = random_password.password.result
 }

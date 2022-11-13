@@ -1,2 +1,2 @@
-region = "us-east-2"
+region  = "us-east-2"
 db_name = "hozgans_blog_dev"
