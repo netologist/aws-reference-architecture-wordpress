@@ -57,14 +57,15 @@ Cloudformation sloution is [there](https://github.com/aws-samples/aws-refarch-wo
 │   ├── security_group
 │   └── vpc
 ├── stacks
-│   ├── pipeline
-│   ├── service
-│   ├── webapp
-│   └── monitoring
-└── config
-    └── terraform
-        ├── backend.tf
-        └── provider.tf
+│   └── dev
+│       ├── env.hcl
+│       ├── service
+│       ├── webapp
+│       ├── monitoring
+│       └── pipeline
+│           ├── terragrunt.hcl
+│           └── main.tf
+└── terragrunt.hcl
 ```
 
 #### folder structure for `terraform`
