@@ -33,4 +33,4 @@ plan:
 	@echo "you should in terraform or terragrunt directories"
 
 deploy: plan
-	terraform apply "tfplan"
+	terraform apply
