@@ -57,9 +57,10 @@ Cloudformation sloution is [there](https://github.com/aws-samples/aws-refarch-wo
 │   ├── security_group
 │   └── vpc
 ├── stacks
-│   ├── app
-│   ├── vpc
-│   └── instance
+│   ├── pipeline
+│   ├── service
+│   ├── webapp
+│   └── monitoring
 └── config
     └── terraform
         ├── backend.tf
@@ -74,6 +75,11 @@ Cloudformation sloution is [there](https://github.com/aws-samples/aws-refarch-wo
 │   ├── rds
 │   ├── security_group
 │   └── vpc
+├── stacks
+│   ├── pipeline
+│   ├── service
+│   ├── webapp
+│   └── monitoring
 ├── main.tf
 ├── backend.tf
 ├── provider.tf
