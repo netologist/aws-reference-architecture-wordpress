@@ -37,7 +37,7 @@ Cloudformation sloution is [there](https://github.com/aws-samples/aws-refarch-wo
 
 - [tgenv](https://github.com/cunymatthieu/tgenv): Terragrunt version manager
 
-- [tfenv](Terraform version manager): Terraform version manager
+- [tfenv](https://github.com/tfutils/tfenv): Terraform version manager
 
 - [tfsec](https://github.com/aquasecurity/tfsec): Security scanner for your Terraform code
 
